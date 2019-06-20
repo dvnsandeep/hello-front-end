@@ -10,13 +10,12 @@ import Cookies from 'universal-cookie';
 import Login from './pages/Login';
 import Index from './pages/Index';
 import Signup from './pages/Signup';
+import Home from './pages/Home';
 
 const cookies = new Cookies();
 
 function HomePage() {
-  const token = cookies.get('token');
-  if (token) return <Redirect to="/index" />;
-  return <Redirect to="/login" />;
+  return <Home />
 }
 
 function LoginPage() {

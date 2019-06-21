@@ -4,6 +4,7 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 const mapStyles = {
     width: '100%',
     height: '100%',
+    marginTop: '3vh'
 };
 export class MapContainer extends React.Component {
     constructor(props) {
@@ -40,5 +41,5 @@ export class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDGUDmZuhUGhmP8CjpDFBwJn88-X9q2y0w'
+    apiKey: 'AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk'
 })(MapContainer);

@@ -1,10 +1,14 @@
 import React from 'react';
 import MapContainer from "../components/map";
+import NavBar from "../components/NavBar";
 
 class Dashboard extends React.Component {
   render() {
     return (
-      <MapContainer/>
+        <React.Fragment>
+          <NavBar /><br />
+          <MapContainer/>
+        </React.Fragment>
     );
   }
 }

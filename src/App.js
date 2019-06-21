@@ -8,14 +8,16 @@ import './styles/style.sass';
 import Cookies from 'universal-cookie';
 
 import Login from './pages/Login';
-import Index from './pages/Index';
+import Dashboard from './pages/Dashboard';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
 
 const cookies = new Cookies();
 
 function HomePage() {
-  return <Home />
+    const token = cookies.get('token');
+    if (token) return <Redirect to="/dashboard" />;
+    return <Home />
 }
 
 function LoginPage() {
@@ -31,10 +33,9 @@ function LogoutPage() {
   return <Redirect to="/login" />;
 }
 
-function IndexPage() {
+function DashboardPage() {
   const token = cookies.get('token');
-  if (!token) return <Redirect to="/login" />;
-  return <Index />;
+  if (token) return <Dashboard />;
 }
 
 function AppRoutes() {
@@ -44,8 +45,7 @@ function AppRoutes() {
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/signup" component={SignUpPage} />
       <Route exact path="/logout" component={LogoutPage} />
-      <Route exact path="/index" component={IndexPage} />
-      <Redirect to="/" />
+      <Route exact path="/dashboard" component={DashboardPage} />
     </Switch>
   );
 }

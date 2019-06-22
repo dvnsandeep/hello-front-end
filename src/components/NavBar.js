@@ -78,15 +78,7 @@ class NavBar extends React.Component{
                                 <Menu.Item>
                                     <a href="/logout">Logout</a>
                                 </Menu.Item>
-                            </Menu.Menu> :
-                            <Menu.Menu position="right">
-                                <Menu.Item>
-                                    <a href="/login">Sign In</a>
-                                </Menu.Item>
-                                <Menu.Item>
-                                    <a href="/signup">Sign Up</a>
-                                </Menu.Item>
-                            </Menu.Menu>
+                            </Menu.Menu> : null
                         }
                     </Menu>
                 </div>

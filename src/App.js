@@ -15,8 +15,8 @@ import Home from './pages/Home';
 const cookies = new Cookies();
 
 function HomePage() {
-    const token = cookies.get('token');
-    if (token) return <Redirect to="/dashboard" />;
+    // const token = cookies.get('token');
+    // if (token) return <Redirect to="/dashboard" />;
     return <Home />
 }
 

@@ -3,38 +3,55 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 const mapStyles = {
     width: '100%',
-    height: '100%',
+    height: '80%',
     marginTop: '3vh'
 };
 export class MapContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            locations: [{latitude: 15.9129, longitude: 79.7400},
-                {latitude: 17.6868, longitude: 83.2185},
-                {latitude: 18.1124, longitude: 79.0193},
-                {latitude: 15.3173, longitude: 75.7139}]
-        }
+            latitude: '',
+            longitude: '',
+        };
+        this.getMyLocation = this.getMyLocation.bind(this)
     }
 
-    displayMarkers = () => {
-        return this.state.locations.map((location, index) => {
-            return <Marker key={index} id={index} position={{
-                lat: location.latitude,
-                lng: location.longitude
-            }}
-           onClick={() => console.log("You clicked me!")} />
-        })
+    componentDidMount() {
+        this.getMyLocation()
+    }
+
+    getMyLocation() {
+        const location = window.navigator && window.navigator.geolocation;
+
+        if (location) {
+            location.getCurrentPosition((position) => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                })
+            }, (error) => {
+                this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+            })
+        }
+
+    }
+
+    display = () => {
+        return <Marker key={this.state.latitude} position={{
+            lat: this.state.latitude,
+            lng: this.state.longitude,
+        }}/>
     };
+
     render() {
         return (
             <Map
                 google={this.props.google}
                 zoom={8}
                 style={mapStyles}
-                initialCenter={{ lat: 20.5937, lng: 78.9629}}
+                initialCenter={{ lat: this.state.latitude, lng: this.state.longitude}}
             >
-                {this.displayMarkers()}
+                {this.display()}
             </Map>
         );
     }

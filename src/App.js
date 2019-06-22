@@ -15,8 +15,8 @@ import Home from './pages/Home';
 const cookies = new Cookies();
 
 function HomePage() {
-    // const token = cookies.get('token');
-    // if (token) return <Redirect to="/dashboard" />;
+    const token = cookies.get('token');
+    if (token) return <Redirect to="/dashboard" />;
     return <Home />
 }
 
@@ -30,7 +30,7 @@ function SignUpPage() {
 
 function LogoutPage() {
   cookies.remove('token');
-  return <Redirect to="/login" />;
+  return <Redirect to="/" />;
 }
 
 function DashboardPage() {

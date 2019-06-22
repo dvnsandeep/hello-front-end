@@ -10,8 +10,11 @@ const cookies = new Cookies();
 
 const query = `
 mutation tokenAuth($email: String!, $password: String!) {
-    tokenAuth(email: $email, password: $password) {
-      token
+   tokenAuth(email: $email, password: $password) {
+    token
+    username
+    firstname
+    lastname
     }
 }`;
 
@@ -35,6 +38,9 @@ class LoginForm extends React.Component {
     const response = await dataFetch({ query, variables });
     if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
       cookies.set('token', response.data.tokenAuth.token, { path: '/' });
+      cookies.set('username', response.data.tokenAuth.username, { path: '/' });
+      localStorage.setItem('firstname', response.data.tokenAuth.firstname);
+      localStorage.setItem('lastname', response.data.tokenAuth.lastname);
       this.setState({ cookieSet: true });
     } else {
       this.setState({ authFail: true });

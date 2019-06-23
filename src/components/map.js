@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactMapGL, {GeolocateControl} from 'react-map-gl';
+import ReactMapGL, {GeolocateControl } from 'react-map-gl';
+import {FormGroup, InputGroup} from "@blueprintjs/core";
 
 export default class MapContainer extends React.Component {
     constructor(props) {
@@ -7,7 +8,7 @@ export default class MapContainer extends React.Component {
         this.state = {
             viewport: {
                 width: 2000,
-                height: 1000,
+                height: 750,
                 latitude: 10.854048087105012,
                 longitude: 76.27108330006735,
                 zoom: 8,
@@ -24,25 +25,37 @@ export default class MapContainer extends React.Component {
             padding: '10px'
         };
         return (
-            <ReactMapGL
-                style={{marginTop: '3vh'}}
-                {...this.state.viewport}
-                onViewportChange={(viewport) => this.setState({viewport})}
-                mapStyle="mapbox://styles/mapbox/dark-v9"
-                mapboxApiAccessToken='pk.eyJ1IjoiaGFyc2hpdGgxMzA0IiwiYSI6ImNqdzZxcGo5cjFjajU0NHMwcnRhaWZ0ZDUifQ.bltu3KQyJLDKHKdO1TKdFw'
-            >
-                <div style={geolocateStyle}>
-                    <GeolocateControl
-                        onViewportChange={(viewport) => this.setState({viewport})}
-                        positionOptions={{enableHighAccuracy: true}}
-                        trackUserLocation={true}
-                    />
+            <React.Fragment>
+                <ReactMapGL
+                    style={{marginTop: '3vh'}}
+                    {...this.state.viewport}
+                    onViewportChange={(viewport) => this.setState({viewport})}
+                    mapStyle="mapbox://styles/mapbox/dark-v9"
+                    mapboxApiAccessToken='pk.eyJ1IjoiaGFyc2hpdGgxMzA0IiwiYSI6ImNqdzZxcGo5cjFjajU0NHMwcnRhaWZ0ZDUifQ.bltu3KQyJLDKHKdO1TKdFw'
+                >
+                    <div style={geolocateStyle}>
+                        <GeolocateControl
+                            onViewportChange={(viewport) => this.setState({viewport})}
+                            positionOptions={{enableHighAccuracy: true}}
+                            trackUserLocation={true}
+                        />
+                    </div>
+                </ReactMapGL>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-3 p-4">
+                            <FormGroup label="Start Location" labelFor="text-input">
+                                <InputGroup placeholder="Start Location" />
+                            </FormGroup>
+                        </div>
+                        <div className="col-sm-3 p-4">
+                            <FormGroup label="End Location" labelFor="text-input">
+                                <InputGroup placeholder="End Location" />
+                            </FormGroup>
+                        </div>
+                    </div>
                 </div>
-            </ReactMapGL>
+            </React.Fragment>
         );
     }
 }
-
-// export default GoogleApiWrapper({
-//     apiKey: 'AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk'
-// })(MapContainer);

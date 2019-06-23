@@ -12,7 +12,7 @@ import fetch from 'isomorphic-fetch';
   })
  */
 
-const API_URL = 'http://localhost:4000/graphql/';
+const API_URL = 'https://hey-hello-app.herokuapp.com/';
 
 type dataFetchOptions = {
   query?: Object,

@@ -159,6 +159,7 @@ class SignUpForm extends React.Component {
             </Col>
           </Row>
           <Button type="submit" intent="primary" text="Sign Up" />
+          <a href="/signup"> Already have an account? Login</a>
         </form>
       </Card>
     );

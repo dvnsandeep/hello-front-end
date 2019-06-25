@@ -25,7 +25,7 @@ class LandingPage extends React.Component{
                 <button>Add your location</button>
                 <Row>
                     <Col sm={2} />
-                    <Col sm={8} className="ml-5 pt-4">
+                    <Col sm={8} className="ml-2 pt-4">
                         <hr />
                     </Col>
                 </Row>
@@ -64,7 +64,7 @@ class LandingPage extends React.Component{
                 </Row>
                 <Row>
                     <Col sm={2} />
-                    <Col sm={8} className="ml-5 pt-4">
+                    <Col sm={8} className="ml-2 pt-4">
                         <hr />
                     </Col>
                 </Row>
@@ -101,7 +101,7 @@ class LandingPage extends React.Component{
                 </Row>
                 <Row>
                     <Col sm={2} />
-                    <Col sm={8} className="ml-5 pt-4">
+                    <Col sm={8} className="ml-2 pt-4">
                         <hr />
                     </Col>
                 </Row>
@@ -119,24 +119,53 @@ class LandingPage extends React.Component{
                 </Row>
                 <Row>
 
-                </Row>
+                
                 <Col sm={2}/>
                 <Col sm={8}>
-                    <textarea placeholder="Message" style={{ width: 400 }}></textarea>
+                    <textarea placeholder="Message" style={{ width: 700 }}></textarea>
                 </Col>
+                </Row>
                 <Row>
                     <Col sm={2} />
                     <Col sm={3}>
-                        <textarea placeholder="Email" style={{ width: 200 }}></textarea>
+                        <textarea placeholder="Email address" style={{ width: 240 }}></textarea>
                     </Col>
                     <Col sm={3}>
-                        <textarea placeholder="Email" style={{ width: 200 }}></textarea>
+                        <textarea placeholder="Full name" style={{ width: 240 }}></textarea>
                     </Col>
                     <Col sm={3}>
-                        <textarea placeholder="Email" style={{ width: 200 }}></textarea>
+                        <button>Send</button> 
+
+                    </Col>
+     
+                </Row>
+                <br></br>
+
+                <Row>
+                    <Col sm={2} />
+                    <Col sm={8} className="ml-2 pt-1">
+                        <hr />
                     </Col>
                 </Row>
-                
+                <Row>
+                    <Col sm={2}/>
+                    <Col sm={8}>
+                        <h1>Promote Hello</h1>
+                        <p>Encourage us through sponsoring s or promoting us</p>
+                        <p>Contact us at - hello@gmail.com</p>
+                        <p>Thankyou</p>
+                    </Col>
+                </Row>
+                <br></br>
+                <Row>
+                    <Col sm={2} />
+                    <Col sm={8}>
+                        <a href="">SignIn</a>
+                        <a>        |       </a>
+                        <a href="">SignUp</a>
+
+                    </Col>
+                </Row>
             </div>
             
         )

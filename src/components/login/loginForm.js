@@ -101,6 +101,7 @@ class LoginForm extends React.Component {
             />
           </FormGroup>
           <Button type="submit" intent="primary" text="Login" />
+	  <a href="/signup"> Don't have an account? Sign Up</a>
         </form>
       </Card>
     );

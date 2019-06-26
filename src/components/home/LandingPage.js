@@ -1,6 +1,14 @@
 import React from "react";
 import {Col, Row} from 'react-grid';
 import placeholder from './placeholder.png';
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment,
+} from 'semantic-ui-react';
 
 
 class LandingPage extends React.Component{
@@ -21,8 +29,14 @@ class LandingPage extends React.Component{
                         </div>
                     </Col>
                 </Row>
-
-                <button>Add your location</button>
+                <Row>
+                <Col sm={5} />
+                <Col sm={3}>
+                	<Button color="black" fluid size="large">
+            			Add your location
+          			</Button>
+                </Col>
+                </Row>
                 <Row>
                     <Col sm={2} />
                     <Col sm={8} className="ml-2 pt-4">
@@ -45,7 +59,7 @@ class LandingPage extends React.Component{
 
                                 <Col sm={4}>
                                     <div>
-                                        <h3>Feature One</h3>
+                                        <h3>Feature Two</h3>
                                         <p>dsfafa faf aw f a fa df  fa f ae f r a f  rf f  f </p>
                                     </div>
                                 </Col>
@@ -53,7 +67,7 @@ class LandingPage extends React.Component{
 
                                 <Col sm={4}>
                                     <div>
-                                        <h3>Feature One</h3>
+                                        <h3>Feature Three</h3>
                                         <p>dsfafa faf aw f a fa df  fa f ae f r a f  rf f  f </p>
                                     </div>
                                 </Col>
@@ -125,6 +139,7 @@ class LandingPage extends React.Component{
                     <textarea placeholder="Message" style={{ width: 700 }}></textarea>
                 </Col>
                 </Row>
+                <br></br>
                 <Row>
                     <Col sm={2} />
                     <Col sm={3}>
@@ -134,8 +149,9 @@ class LandingPage extends React.Component{
                         <textarea placeholder="Full name" style={{ width: 240 }}></textarea>
                     </Col>
                     <Col sm={3}>
-                        <button>Send</button> 
-
+                    <Button color="black" fluid size="large">
+            			Send
+          			</Button>
                     </Col>
      
                 </Row>

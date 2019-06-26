@@ -43,6 +43,7 @@ class LandingPage extends React.Component{
                     <Col sm ={8}>
                         <div className="page-container">
                             <h1>Main Features/Benefits</h1>
+			    <br></br>
                             <p>This is a Service-oriented Project, this product allows unknown people to interact among themselves to make their travel Easy, Comfortable, Interesting and also reduces their travel expenditure.</p>
                             <Row>
                                 <Col sm={4}>
@@ -82,6 +83,7 @@ class LandingPage extends React.Component{
                     <Col sm={8}>
                         <div className="page-container">
                             <h1>Image Gallery/Product Shop</h1>
+			    <br></br>
                             <p>This is a Service-oriented Project, this product allows unknown people to interact among themselves to make their travel Easy, Comfortable, Interesting and also reduces their travel expenditure.</p>
                             <Row>
                                 <Col sm={4}>
@@ -119,6 +121,7 @@ class LandingPage extends React.Component{
                     <Col sm={8}>
                     <div>
                     <h1>Get in touch</h1>
+		    <br></br>
                     <p>This is a Service-oriented Project, this product allows unknown people to interact among themselves to make their travel Easy, Comfortable, Interesting and also reduces their travel expenditure.</p>
 
 
@@ -161,7 +164,8 @@ class LandingPage extends React.Component{
                 <Row>
                     <Col sm={2}/>
                     <Col sm={8}>
-                        <h1>Promote Hello</h1>
+                        <h1><i class="far fa-heart"></i>  Promote Hello</h1>
+			<br></br>
                         <p>Encourage us through sponsoring s or promoting us</p>
                         <p>Contact us at - hello@gmail.com</p>
                         <p>Thankyou</p>

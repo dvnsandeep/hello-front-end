@@ -3,11 +3,6 @@ import {Col, Row} from 'react-grid';
 import placeholder from './placeholder.png';
 import {
   Button,
-  Form,
-  Grid,
-  Header,
-  Message,
-  Segment,
 } from 'semantic-ui-react';
 
 
@@ -52,23 +47,23 @@ class LandingPage extends React.Component{
                             <Row>
                                 <Col sm={4}>
                                     <div>
-                                        <h3>Feature One</h3>
-                                        <p>dsfafa faf aw f a fa df  fa f ae f r a f  rf f  f </p>
+                                        <h3><i className="far fa-check-circle"/> Feature One</h3>
+                                        <p>This is the description of the first feature</p>
                                     </div>
                                 </Col>
 
                                 <Col sm={4}>
                                     <div>
-                                        <h3>Feature Two</h3>
-                                        <p>dsfafa faf aw f a fa df  fa f ae f r a f  rf f  f </p>
+                                        <h3><i className="far fa-check-circle"/> Feature Two</h3>
+                                        <p>This is the description of the second feature</p>
                                     </div>
                                 </Col>
 
 
                                 <Col sm={4}>
                                     <div>
-                                        <h3>Feature Three</h3>
-                                        <p>dsfafa faf aw f a fa df  fa f ae f r a f  rf f  f </p>
+                                        <h3><i className="far fa-check-circle"/> Feature Three</h3>
+                                        <p>This is the description of the third feature </p>
                                     </div>
                                 </Col>
 

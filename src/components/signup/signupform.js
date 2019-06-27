@@ -29,7 +29,6 @@ class SignUpForm extends React.Component {
       firstname: '',
       lastname: '',
       username: '',
-      showPassword: false,
       cookieSet: false,
       authFail: false,
     };
@@ -39,7 +38,6 @@ class SignUpForm extends React.Component {
     this.confirmEntry = this.confirmEntry.bind(this);
     this.passwordEntry = this.passwordEntry.bind(this);
     this.emailEntry = this.emailEntry.bind(this);
-    this.handleLockClick = this.handleLockClick.bind(this);
   }
 
   signup = async () => {
@@ -54,6 +52,9 @@ class SignUpForm extends React.Component {
     const response = await dataFetch({ query, variables });
     if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
       cookies.set('token', response.data.createUser.token, { path: '/' });
+      cookies.set('username', response.data.createUser.username, { path: '/' });
+      localStorage.setItem('firstname', response.data.createUser.firstname);
+      localStorage.setItem('lastname', response.data.createUser.lastname);
       this.setState({ cookieSet: true });
     } else {
       this.setState({ authFail: true });
@@ -84,23 +85,8 @@ class SignUpForm extends React.Component {
     this.setState({ email: event.target.value });
   }
 
-  handleLockClick() {
-    this.setState(prevState => ({ showPassword: !prevState.showPassword }));
-  }
-
   render() {
     if (this.state.cookieSet) return <Redirect to="/" />;
-
-    const lockButton = (
-      <Tooltip content={`${this.state.showPassword ? 'Hide' : 'Show'} Password`}>
-        <Button
-          icon={this.state.showPassword ? 'unlock' : 'lock'}
-          intent="warning"
-          minimal
-          onClick={this.handleLockClick}
-        />
-      </Tooltip>
-    );
 
     const errorMessage = (
       <div style={{ padding: '1rem 0rem' }}>
@@ -142,18 +128,16 @@ class SignUpForm extends React.Component {
                 <InputGroup
                   placeholder="Enter your password"
                   onChange={this.passwordEntry}
-                  rightElement={lockButton}
-                  type={this.state.showPassword ? 'text' : 'password'}
+                  type="password"
                 />
               </FormGroup>
             </Col>
             <Col>
-              <FormGroup label="Confirm Password" labelFor="text-input">
+              <FormGroup label="Password" labelFor="text-input">
                 <InputGroup
-                  placeholder="Enter your password"
-                  onChange={this.passwordEntry}
-                  rightElement={lockButton}
-                  type={this.state.showPassword ? 'text' : 'password'}
+                    placeholder="Confirm Your Password"
+                    onChange={this.confirmEntry}
+                    type="password"
                 />
               </FormGroup>
             </Col>

@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 
 const cookies = new Cookies();
 
@@ -33,6 +34,10 @@ function LogoutPage() {
   return <Redirect to="/" />;
 }
 
+function ProfilePage() {
+  return <Profile />;
+}
+
 function DashboardPage() {
   const token = cookies.get('token');
   if (token) return <Dashboard />;
@@ -46,6 +51,8 @@ function AppRoutes() {
       <Route exact path="/signup" component={SignUpPage} />
       <Route exact path="/logout" component={LogoutPage} />
       <Route exact path="/dashboard" component={DashboardPage} />
+	  <Route exact path="/Profile" component={ProfilePage} />
+      
     </Switch>
   );
 }
@@ -60,5 +67,5 @@ export default function App() {
         <AppRoutes />
       </BrowserRouter>
     </React.Fragment>
-  );
+);
 }

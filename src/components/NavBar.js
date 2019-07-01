@@ -42,7 +42,7 @@ class NavBar extends React.Component{
             return (
                 <Menu.Menu position="right">
                     <Menu.Item>
-                        <h5>{this.state.firstname} {this.state.lastname}</h5>
+                        <h5><a href="/Profile">{this.state.firstname} {this.state.lastname}</a></h5>
                     </Menu.Item>
                     <Menu.Item>
                         <h4><a href="/logout">Logout</a></h4>

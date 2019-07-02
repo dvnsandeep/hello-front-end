@@ -10,8 +10,8 @@ import dataFetch from '../../utils/dataFetch';
 const cookies = new Cookies();
 
 const query = `
-mutation createuser($email: String!, $password: String!, $confirm: String!,$username: String!, $firstname: String!, $lastname: String! ) {
-    createUser(email: $email, password: $password, confirm: $confirm, username: $username, firstname: $firstname , lastname:$lastname ) {
+mutation createuser($email: String!, $password: String!, $confirm: String!,$username: String!, $firstname: String!, $lastname: String!, $image: String! ) {
+    createUser(email: $email, password: $password, confirm: $confirm, username: $username, firstname: $firstname , lastname:$lastname , imageUrl: $image) {
       token
       username
       firstname

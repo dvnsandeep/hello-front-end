@@ -4,7 +4,6 @@ import {Container, Row, Col } from 'react-grid';
 import { Helmet } from 'react-helmet';
 import { Card } from '@blueprintjs/core';
 import Cookies from 'universal-cookie';
-import avatar from '../images/avatar.jpg'
 const cookies = new Cookies();
 
 class Profile extends React.Component{

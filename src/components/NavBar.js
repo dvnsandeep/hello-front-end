@@ -1,6 +1,5 @@
 import React from "react";
-import { Menu , Image } from "semantic-ui-react";
-import Logo from "../images/logo.jpg";
+import { Menu  } from "semantic-ui-react";
 import Cookies from 'universal-cookie';
 
 
@@ -42,10 +41,10 @@ class NavBar extends React.Component{
             return (
                 <Menu.Menu position="right">
                     <Menu.Item>
-                        <h5><a href="/profile" style={{textDecoration: 'none', color: 'black'}}>{this.state.firstname} {this.state.lastname}</a></h5>
+                        <h5><a href="/profile" style={{textDecoration: 'none', color: 'white'}}>{this.state.firstname} {this.state.lastname}</a></h5>
                     </Menu.Item>
                     <Menu.Item>
-                        <h4><a href="/logout" style={{textDecoration: 'none', color: 'black'}}>Logout</a></h4>
+                        <h4><a href="/logout" style={{textDecoration: 'none', color: 'white'}}>Logout</a></h4>
                     </Menu.Item>
                 </Menu.Menu>
             )
@@ -53,9 +52,10 @@ class NavBar extends React.Component{
         return (
             <React.Fragment>
                 <div className="navbar">
-                    <Menu fixed="top" borderless>
+                    <Menu fixed="top" inverted borderless>
                         <Menu.Item>
-                            <Image size="mini" src={Logo}/>
+                            {/*<Image size="mini" src={Logo}/>*/}
+                            <h1 style={{fontWeight: '900'}}>Hello</h1>
                         </Menu.Item>
                         {this.state.dataSet ? loggedIn(): notloggedIn()}
                     </Menu>

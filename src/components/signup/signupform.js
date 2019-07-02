@@ -60,6 +60,7 @@ class SignUpForm extends React.Component {
       localStorage.setItem('firstname', response.data.createUser.firstname);
       localStorage.setItem('lastname', response.data.createUser.lastname);
       localStorage.setItem('avatar', response.data.createUser.imageUrl);
+      localStorage.setItem('email', response.data.createUser.email);
       this.setState({ cookieSet: true });
     } else {
       this.setState({ authFail: true });

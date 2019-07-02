@@ -11,6 +11,7 @@ const cookies = new Cookies();
 const query = `
 mutation tokenAuth($email: String!, $password: String!) {
    tokenAuth(email: $email, password: $password) {
+    email
     token
     username
     firstname
@@ -43,6 +44,7 @@ class LoginForm extends React.Component {
       localStorage.setItem('firstname', response.data.tokenAuth.firstname);
       localStorage.setItem('lastname', response.data.tokenAuth.lastname);
       localStorage.setItem('avatar', response.data.tokenAuth.imageUrl);
+      localStorage.setItem('email', response.data.tokenAuth.email);
       this.setState({ cookieSet: true });
     } else {
       this.setState({ authFail: true });

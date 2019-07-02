@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip, Button, Card, FormGroup, InputGroup, Callout } from '@blueprintjs/core';
+import { Button, Card, FormGroup, InputGroup, Callout } from '@blueprintjs/core';
 import { Row, Col } from 'react-grid';
 
 import Cookies from 'universal-cookie';
@@ -10,12 +10,13 @@ import dataFetch from '../../utils/dataFetch';
 const cookies = new Cookies();
 
 const query = `
-mutation createuser($email: String!, $password: String!, $confirm: String!,$username: String!, $firstname: String!, $lastname: String!, $image: String! ) {
-    createUser(email: $email, password: $password, confirm: $confirm, username: $username, firstname: $firstname , lastname:$lastname , imageUrl: $image) {
+mutation createuser($email: String!, $password: String!, $confirm: String!,$username: String!, $firstname: String!, $lastname: String!, $imageUrl: String! ) {
+    createUser(email: $email, password: $password, confirm: $confirm, username: $username, firstname: $firstname , lastname:$lastname , imageUrl: $imageUrl){
       token
       username
       firstname
       lastname
+      imageUrl
     }
 } `;
 

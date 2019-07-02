@@ -103,8 +103,8 @@ class SignUpForm extends React.Component {
     );
 
     return (
-      <Card elevation="2" className="signup-card">
-        <h1>Sign Up</h1>
+      <Card elevation="2" className="login-card">
+        <h1 style={{textAlign: 'center', fontFamily: 'Book Antiqua', fontWeight: '900'}}>Sign Up</h1>
         {this.state.authFail ? errorMessage : null}
         <form
           onSubmit={e => {
@@ -114,20 +114,20 @@ class SignUpForm extends React.Component {
         >
           <Row>
             <Col>
-              <FormGroup label="firstname" labelFor="text-input">
+              <FormGroup label="Firstname" labelFor="text-input">
                 <InputGroup onChange={this.firstnameEntry} placeholder="Enter your FirstName" />
               </FormGroup>
             </Col>
             <Col>
-              <FormGroup label="lastname" labelFor="text-input">
+              <FormGroup label="Lastname" labelFor="text-input">
                 <InputGroup onChange={this.lastnameEntry} placeholder="Enter your LastName" />
               </FormGroup>
             </Col>
           </Row>
-          <FormGroup label="email" labelFor="text-input">
+          <FormGroup label="Email" labelFor="text-input">
             <InputGroup onChange={this.emailEntry} placeholder="Enter your email" />
           </FormGroup>
-          <FormGroup label="username" labelFor="text-input">
+          <FormGroup label="Username" labelFor="text-input">
             <InputGroup onChange={this.usernameEntry} placeholder="Enter your username" />
           </FormGroup>
           <Row>
@@ -154,7 +154,7 @@ class SignUpForm extends React.Component {
             <InputGroup onChange={this.imageUrlEntry} placeholder="Enter your Image Url" />
           </FormGroup>
           <Button type="submit" intent="primary" text="Sign Up" />
-          <a href="/login"> Already have an account? Login</a>
+          <a style={{float: 'right'}} href="/login"> Already have an account? Login</a>
         </form>
       </Card>
     );

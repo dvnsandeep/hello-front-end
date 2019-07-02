@@ -32,7 +32,7 @@ class NavBar extends React.Component{
                         <a href="/login">Sign In</a>
                     </Menu.Item>
                     <Menu.Item>
-                        <a href="/signup">Sign Up</a>
+                        <a href="/signup" style={{marginRight: '50px'}}>Sign Up</a>
                     </Menu.Item>
                 </Menu.Menu>
             )
@@ -44,7 +44,7 @@ class NavBar extends React.Component{
                         <h5><a href="/profile" style={{textDecoration: 'none', color: 'white'}}>{this.state.firstname} {this.state.lastname}</a></h5>
                     </Menu.Item>
                     <Menu.Item>
-                        <h4><a href="/logout" style={{textDecoration: 'none', color: 'white'}}>Logout</a></h4>
+                        <h4><a href="/logout" style={{textDecoration: 'none', color: 'white', marginRight: '50px'}}>Logout</a></h4>
                     </Menu.Item>
                 </Menu.Menu>
             )
@@ -54,8 +54,7 @@ class NavBar extends React.Component{
                 <div className="navbar">
                     <Menu fixed="top" inverted borderless>
                         <Menu.Item>
-                            {/*<Image size="mini" src={Logo}/>*/}
-                            <h1 style={{fontWeight: '900'}}>Hello</h1>
+                            <h1 style={{fontWeight: '900', marginLeft: '50px'}}>Hello</h1>
                         </Menu.Item>
                         {this.state.dataSet ? loggedIn(): notloggedIn()}
                     </Menu>

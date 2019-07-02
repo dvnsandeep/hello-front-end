@@ -85,7 +85,7 @@ class LoginForm extends React.Component {
 
     return (
       <Card elevation="2" className="login-card">
-        <h1>Login</h1>
+        <h1 style={{textAlign: 'center', fontFamily: 'Book Antiqua', fontWeight: '900'}}>Login</h1>
         {this.state.authFail ? errorMessage : null}
         <form
           onSubmit={e => {
@@ -105,7 +105,7 @@ class LoginForm extends React.Component {
             />
           </FormGroup>
           <Button type="submit" intent="primary" text="Login" />
-	       <a href="/signup"> Don't have an account? Sign Up</a>
+	       <a style={{float: 'right'}} href="/signup"> Don't have an account? Sign Up</a>
         </form>
       </Card>
     );

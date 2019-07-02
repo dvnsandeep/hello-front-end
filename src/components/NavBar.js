@@ -42,14 +42,14 @@ class NavBar extends React.Component{
             return (
                 <Menu.Menu position="right">
                     <Menu.Item>
-                        <h5><a href="/Profile">{this.state.firstname} {this.state.lastname}</a></h5>
+                        <h5><a href="/profile" style={{textDecoration: 'none', color: 'black'}}>{this.state.firstname} {this.state.lastname}</a></h5>
                     </Menu.Item>
                     <Menu.Item>
-                        <h4><a href="/logout">Logout</a></h4>
+                        <h4><a href="/logout" style={{textDecoration: 'none', color: 'black'}}>Logout</a></h4>
                     </Menu.Item>
                 </Menu.Menu>
             )
-        }
+        };
         return (
             <React.Fragment>
                 <div className="navbar">

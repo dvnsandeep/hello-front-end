@@ -15,6 +15,7 @@ mutation tokenAuth($email: String!, $password: String!) {
     username
     firstname
     lastname
+    imageUrl
     }
 }`;
 
@@ -41,6 +42,7 @@ class LoginForm extends React.Component {
       cookies.set('username', response.data.tokenAuth.username, { path: '/' });
       localStorage.setItem('firstname', response.data.tokenAuth.firstname);
       localStorage.setItem('lastname', response.data.tokenAuth.lastname);
+      localStorage.setItem('avatar', response.data.tokenAuth.imageUrl);
       this.setState({ cookieSet: true });
     } else {
       this.setState({ authFail: true });
@@ -101,7 +103,7 @@ class LoginForm extends React.Component {
             />
           </FormGroup>
           <Button type="submit" intent="primary" text="Login" />
-	  <a href="/signup"> Don't have an account? Sign Up</a>
+	       <a href="/signup"> Don't have an account? Sign Up</a>
         </form>
       </Card>
     );

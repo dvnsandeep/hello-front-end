@@ -29,6 +29,7 @@ class SignUpForm extends React.Component {
       firstname: '',
       lastname: '',
       username: '',
+      imageUrl: '',
       cookieSet: false,
       authFail: false,
     };
@@ -38,6 +39,7 @@ class SignUpForm extends React.Component {
     this.confirmEntry = this.confirmEntry.bind(this);
     this.passwordEntry = this.passwordEntry.bind(this);
     this.emailEntry = this.emailEntry.bind(this);
+    this.imageUrlEntry = this.imageUrlEntry.bind(this);
   }
 
   signup = async () => {
@@ -48,6 +50,7 @@ class SignUpForm extends React.Component {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       username: this.state.username,
+      imageUrl: this.state.imageUrl,
     };
     const response = await dataFetch({ query, variables });
     if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
@@ -55,12 +58,15 @@ class SignUpForm extends React.Component {
       cookies.set('username', response.data.createUser.username, { path: '/' });
       localStorage.setItem('firstname', response.data.createUser.firstname);
       localStorage.setItem('lastname', response.data.createUser.lastname);
+      localStorage.setItem('avatar', response.data.createUser.imageUrl);
       this.setState({ cookieSet: true });
     } else {
       this.setState({ authFail: true });
     }
   };
-
+  imageUrlEntry(event) {
+    this.setState({ imageUrl: event.target.value });
+  }
   usernameEntry(event) {
     this.setState({ username: event.target.value });
   }
@@ -142,6 +148,9 @@ class SignUpForm extends React.Component {
               </FormGroup>
             </Col>
           </Row>
+          <FormGroup label="Image Url" labelFor="text-input">
+            <InputGroup onChange={this.imageUrlEntry} placeholder="Enter your Image Url" />
+          </FormGroup>
           <Button type="submit" intent="primary" text="Sign Up" />
           <a href="/login"> Already have an account? Login</a>
         </form>

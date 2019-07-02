@@ -51,8 +51,7 @@ function AppRoutes() {
       <Route exact path="/signup" component={SignUpPage} />
       <Route exact path="/logout" component={LogoutPage} />
       <Route exact path="/dashboard" component={DashboardPage} />
-	  <Route exact path="/Profile" component={ProfilePage} />
-      
+	  <Route exact path="/profile" component={ProfilePage} />
     </Switch>
   );
 }

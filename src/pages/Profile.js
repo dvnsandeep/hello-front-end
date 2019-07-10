@@ -6,6 +6,7 @@ import { Card } from '@blueprintjs/core';
 import Cookies from 'universal-cookie';
 import Cover from '../images/cover.jpeg';
 import StarRatingComponent from 'react-star-rating-component';
+import Avatar from '../images/avatar.jpg';
 
 const cookies = new Cookies();
 
@@ -61,7 +62,7 @@ constructor(props) {
                         <Row>
                             <Col xs={2} sm={2} md={2}/>
                             <Col xs={3} sm={3} md={3}>
-                                <img src= {this.state.avatar}  className="profile-img" alt="profile" />
+                                { this.state.avatar ? <img src= {this.state.avatar}  className="profile-img" alt="profile" />: <img src= {Avatar}  className="profile-img" alt="profile" />}
                             </Col>
                             <Col xs={6} sm={6} md={6} className="profile-text">
                                 <h1>{this.state.firstName} {this.state.lastName}</h1>

@@ -2,6 +2,20 @@ import React from 'react';
 import NavBar from "../components/NavBar";
 import Map from "../components/dashboard/Map";
 import { withScriptjs } from "react-google-maps";
+import dataFetch from '../utils/dataFetch';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
+const query = `
+mutation createTravel($token: String!, $from: String! , $to: String! ) {
+   createTravel(token: $token, from: $from , to: $to) {
+    _id
+    from
+    to
+  }
+}
+`;
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -20,9 +34,19 @@ class Dashboard extends React.Component {
         this.setState({
             to,
             from,
-            search: true
-        })
+            search: true,
+        });
+        this.travel();
     }
+
+    travel = async () => {
+        const token = cookies.get('token');
+        const variables = { token: token ,from: this.state.from, to: this.state.to  };
+        const response = await dataFetch({ query, variables });
+        if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
+            console.log('worked');
+        }
+    };
 
     render() {
       const MapLoader = withScriptjs(Map);

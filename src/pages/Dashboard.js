@@ -26,6 +26,8 @@ class Dashboard extends React.Component {
             search: false,
         };
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     handleSearch(){
@@ -36,6 +38,9 @@ class Dashboard extends React.Component {
             from,
             search: true,
         });
+    }
+
+    handleSubmit(){
         this.travel();
     }
 
@@ -73,8 +78,9 @@ class Dashboard extends React.Component {
                       />
                   </div>
                   <div className="col-md-2">
-                      <button onClick={this.handleSearch}>Search</button>
+                      <button style={{marginLeft: 10}} onClick={this.handleSearch}>Search</button>
                   </div>
+                  {this.state.search ? <button style={{marginTop: 15 , marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
               </div>
           </div>
         </React.Fragment>

@@ -31,6 +31,7 @@ function SignUpPage() {
 
 function LogoutPage() {
   cookies.remove('token');
+  localStorage.clear();
   return <Redirect to="/" />;
 }
 

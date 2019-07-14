@@ -7,8 +7,18 @@ import Cookies from 'universal-cookie';
 import Cover from '../images/cover.jpeg';
 import StarRatingComponent from 'react-star-rating-component';
 import Avatar from '../images/avatar.jpg';
+import dataFetch from "../utils/dataFetch";
 
 const cookies = new Cookies();
+
+const query = `
+mutation getTravels($token: String!){
+  getTravels(token:$token){
+    _id
+    from
+    to
+  }
+}`;
 
 class Profile extends React.Component{
 constructor(props) {
@@ -22,20 +32,44 @@ constructor(props) {
       email: '',
       profileSet: false,
       dataSet: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      from: '',
+      to: '',
+      travelSet: false
     };
   }
-  componentDidMount(){
+    componentDidMount(){
     const firstName = localStorage.getItem('firstname');
     const token = cookies.get('token');
-    if(token)
-    {
+    const from = localStorage.getItem('from');
+    const to = localStorage.getItem('to');
+    if(token) {
       if (firstName == null) {
         const username = cookies.get('username');
         this.setState({ token, username, isLoggedIn: true });
       } else { this.setState({ profileSet: true }); }
     }
-  }
+    this.travel();
+    this.setState({
+        from,
+        to,
+    })
+    }
+    travel = async () => {
+        const token = cookies.get('token');
+        const variables = { token: token};
+        const response = await dataFetch({ query, variables });
+        if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
+            response.data.getTravels.map(travel =>{
+                localStorage.setItem('id', travel.id);
+                localStorage.setItem('from', travel.from);
+                localStorage.setItem('to', travel.to);
+            });
+            this.setState({
+                travelSet: true
+            })
+        }
+    };
 
   componentDidUpdate(){
     if (!this.state.dataSet && this.state.profileSet) { this.setData(); }
@@ -95,6 +129,27 @@ constructor(props) {
                                                 </span>
                                             );
                                         }} />
+                                </div>
+                            </Col>
+                            <Col sm={6}>
+                                <h1 className="p-4">Recent Travel</h1>
+                                <div className="card p-4">
+                                    {this.state.travelSet ?
+                                        <Row>
+                                            <Col sm={2}/>
+                                            <Col sm={3}>
+                                                <h5>From</h5>
+                                                <h1>{this.state.from}</h1>
+                                            </Col>
+                                            <Col sm={2}>
+                                                <br/>
+                                                <i className="fa fa-2x fa-arrow-right"/>
+                                            </Col>
+                                            <Col sm={4}>
+                                                <h5>To</h5>
+                                                <h1>{this.state.to}</h1>
+                                            </Col>
+                                        </Row> : <h1>No Travels Yet</h1>}
                                 </div>
                             </Col>
                         </Row>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Menu  } from "semantic-ui-react";
 import Cookies from 'universal-cookie';
 
 
@@ -27,38 +26,27 @@ class NavBar extends React.Component{
     render() {
         const notloggedIn = () => {
             return (
-                <Menu.Menu position="right">
-                    <Menu.Item>
-                        <a href="/login">Sign In</a>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <a href="/signup" style={{marginRight: '50px'}}>Sign Up</a>
-                    </Menu.Item>
-                </Menu.Menu>
+                <div className="navbar-nav ml-auto" style={{marginRight: '20vh'}}>
+                    <a href="/login" className="nav-item nav-link pt-4 px-4">Sign In</a>
+                    <a href="/signup" className="nav-item nav-link pt-4 px-4">Sign Up</a>
+                </div>
             )
         };
         const loggedIn = () => {
             return (
-                <Menu.Menu position="right">
-                    <Menu.Item>
-                        <h5><a href="/profile" style={{textDecoration: 'none', color: 'white'}}>{this.state.firstname} {this.state.lastname}</a></h5>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <h4><a href="/logout" style={{textDecoration: 'none', color: 'white', marginRight: '50px'}}>Logout</a></h4>
-                    </Menu.Item>
-                </Menu.Menu>
+                <div className="navbar-nav ml-auto">
+                    <a href="/profile" className="nav-item nav-link px-4 pt-4">{this.state.firstname} {this.state.lastname}</a>
+                    <a href="/logout" className="nav-item nav-link px-4 pt-4">Log Out</a>
+                </div>
             )
         };
         return (
             <React.Fragment>
-                <div className="navbar">
-                    <Menu fixed="top" inverted borderless>
-                        <Menu.Item>
-                            <h1 style={{fontWeight: '900', marginLeft: '50px'}}>Hello</h1>
-                        </Menu.Item>
+                <nav className="navbar navbar-expand-md">
+                    <div className="navbar-collapse">
                         {this.state.dataSet ? loggedIn(): notloggedIn()}
-                    </Menu>
-                </div>
+                    </div>
+                </nav>
             </React.Fragment>
         );
     }

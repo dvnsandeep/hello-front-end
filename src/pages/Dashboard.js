@@ -4,6 +4,9 @@ import Map from "../components/dashboard/Map";
 import { withScriptjs } from "react-google-maps";
 import dataFetch from '../utils/dataFetch';
 import Cookies from 'universal-cookie';
+import { GoogleComponent } from 'react-google-location';
+
+const API_KEY = 'AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk'
 
 const cookies = new Cookies();
 
@@ -31,8 +34,8 @@ class Dashboard extends React.Component {
     }
 
     handleSearch(){
-        const from = this.from.value;
-        const to = this.to.value;
+        const from = this.from;
+        const to = this.to;
         this.setState({
             to,
             from,
@@ -55,6 +58,8 @@ class Dashboard extends React.Component {
 
     render() {
       const MapLoader = withScriptjs(Map);
+        console.warn("from", this.from)
+        console.warn("to", this.to)
       return (
         <React.Fragment>
           <NavBar />
@@ -66,7 +71,7 @@ class Dashboard extends React.Component {
                   to={this.state.to}
               />: null}
               <div className="row forms page-container">
-                  <div className="col-sm-4">
+                   {/* <div className="col-sm-4">
                       <input placeholder="From"
                              ref={(from) => this.from = from}
                       />
@@ -76,13 +81,47 @@ class Dashboard extends React.Component {
                       <input placeholder="To"
                              ref={(to) => this.to = to}
                       />
-                  </div>
+                  </div>} */}
                   <div className="col-md-2">
                       <button style={{marginLeft: 10}} onClick={this.handleSearch}>Search</button>
-                  </div>
+                  </div> }
+
+                       <div className="col-sm-4">
+                          <GoogleComponent
+
+                              apiKey={API_KEY}
+                              language={'en'}
+                              country={'country:in'}
+                              coordinates={true}
+                              locationBoxStyle={'custom-style'}
+                              locationListStyle={'custom-style-list'}
+                              onChange={(e) => { this.setState({ place: e }) }} 
+                              onChange={(e) => { this.from = e.place }}
+                                />
+                          
+                      </div>
+                      <div className="col-sm-4">
+                          <GoogleComponent
+
+                              apiKey={API_KEY}
+                              language={'en'}
+                              country={'country:in'}
+                              coordinates={true}
+                              locationBoxStyle={'custom-style'}
+                              locationListStyle={'custom-style-list'}
+                              onChange={(e) => { this.setState({ place: e }) }}
+                              onChange={(e) => { this.to = e.place }}
+                              
+                          />
+                         
+                      </div> 
+
+
+
                   {this.state.search ? <button style={{marginTop: 15 , marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
               </div>
           </div>
+
         </React.Fragment>
     );
   }

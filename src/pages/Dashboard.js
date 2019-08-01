@@ -58,8 +58,6 @@ class Dashboard extends React.Component {
 
     render() {
       const MapLoader = withScriptjs(Map);
-        console.warn("from", this.from)
-        console.warn("to", this.to)
       return (
         <React.Fragment>
           <NavBar />
@@ -71,54 +69,37 @@ class Dashboard extends React.Component {
                   to={this.state.to}
               />: null}
               <div className="row forms page-container">
-                   {/* <div className="col-sm-4">
-                      <input placeholder="From"
-                             ref={(from) => this.from = from}
+                  <div className="col-sm-4">
+                      <GoogleComponent
+                          apiKey={API_KEY}
+                          language={'en'}
+                          country={'country:in'}
+                          coordinates={true}
+                          locationBoxStyle={'custom-style'}
+                          locationListStyle={'custom-style-list'}
+                          onChange={(e) => { this.setState({ place: e }) }}
+                          onChange={(e) => { this.from = e.place }}
                       />
                   </div>
-                  <div className="col-sm-1"/>
                   <div className="col-sm-4">
-                      <input placeholder="To"
-                             ref={(to) => this.to = to}
+                      <GoogleComponent
+                          apiKey={API_KEY}
+                          language={'en'}
+                          country={'country:in'}
+                          coordinates={true}
+                          locationBoxStyle={'custom-style'}
+                          locationListStyle={'custom-style-list'}
+                          onChange={(e) => { this.setState({ place: e }) }}
+                          onChange={(e) => { this.to = e.place }}
+
                       />
-                  </div>} */}
-                  <div className="col-md-2">
+                  </div>
+                  <div className="col-sm-2">
                       <button style={{marginLeft: 10}} onClick={this.handleSearch}>Search</button>
-                  </div> }
-
-                       <div className="col-sm-4">
-                          <GoogleComponent
-
-                              apiKey={API_KEY}
-                              language={'en'}
-                              country={'country:in'}
-                              coordinates={true}
-                              locationBoxStyle={'custom-style'}
-                              locationListStyle={'custom-style-list'}
-                              onChange={(e) => { this.setState({ place: e }) }} 
-                              onChange={(e) => { this.from = e.place }}
-                                />
-                          
-                      </div>
-                      <div className="col-sm-4">
-                          <GoogleComponent
-
-                              apiKey={API_KEY}
-                              language={'en'}
-                              country={'country:in'}
-                              coordinates={true}
-                              locationBoxStyle={'custom-style'}
-                              locationListStyle={'custom-style-list'}
-                              onChange={(e) => { this.setState({ place: e }) }}
-                              onChange={(e) => { this.to = e.place }}
-                              
-                          />
-                         
-                      </div> 
-
-
-
-                  {this.state.search ? <button style={{marginTop: 15 , marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
+                  </div>
+                  <div className="col-sm-2">
+                      {this.state.search ? <button style={{marginTop: 15 , marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
+                  </div>
               </div>
           </div>
 

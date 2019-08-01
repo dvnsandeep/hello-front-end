@@ -5,7 +5,7 @@ import landingpage from './landingpage.svg';
 class LandingPage extends React.Component{
     render() {
         return(
-            <div className="page-container">
+            <div>
                 <Row>
                     <Col sm={6}>
                         <div className="title">HELLO :)</div>

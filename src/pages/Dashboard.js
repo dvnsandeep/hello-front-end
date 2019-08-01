@@ -6,7 +6,7 @@ import dataFetch from '../utils/dataFetch';
 import Cookies from 'universal-cookie';
 import { GoogleComponent } from 'react-google-location';
 
-const API_KEY = 'AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk'
+const API_KEY = 'AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk';
 
 const cookies = new Cookies();
 
@@ -61,15 +61,15 @@ class Dashboard extends React.Component {
       return (
         <React.Fragment>
           <NavBar />
-          <div className="page-container">
+          <div>
               {this.state.search ? <MapLoader
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk"
                   loadingElement={<div style={{ height: `100%` }} />}
                   from={this.state.from}
                   to={this.state.to}
               />: null}
-              <div className="row forms page-container">
-                  <div className="col-sm-4">
+              <div className="row forms">
+                  <div className="col-sm-4 p-2">
                       <GoogleComponent
                           apiKey={API_KEY}
                           language={'en'}
@@ -77,11 +77,10 @@ class Dashboard extends React.Component {
                           coordinates={true}
                           locationBoxStyle={'custom-style'}
                           locationListStyle={'custom-style-list'}
-                          onChange={(e) => { this.setState({ place: e }) }}
-                          onChange={(e) => { this.from = e.place }}
+                          onChange={(e) => { this.setState({ place: e }); this.from = e.place }}
                       />
                   </div>
-                  <div className="col-sm-4">
+                  <div className="col-sm-4 p-2">
                       <GoogleComponent
                           apiKey={API_KEY}
                           language={'en'}
@@ -89,16 +88,14 @@ class Dashboard extends React.Component {
                           coordinates={true}
                           locationBoxStyle={'custom-style'}
                           locationListStyle={'custom-style-list'}
-                          onChange={(e) => { this.setState({ place: e }) }}
-                          onChange={(e) => { this.to = e.place }}
-
+                          onChange={(e) => { this.setState({ place: e });  this.to = e.place  }}
                       />
                   </div>
-                  <div className="col-sm-2">
+                  <div className="col-sm-2 p-2">
                       <button style={{marginLeft: 10}} onClick={this.handleSearch}>Search</button>
                   </div>
-                  <div className="col-sm-2">
-                      {this.state.search ? <button style={{marginTop: 15 , marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
+                  <div className="col-sm-2 p-2">
+                      {this.state.search ? <button style={{marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
                   </div>
               </div>
           </div>

@@ -92,7 +92,7 @@ constructor(props) {
                 </Helmet>
                 <div className="page-container">
                     <Card elevation ="2" style={{margin: 0}}>
-                        <img src={Cover} alt="coverimg" className="cover-img" />
+                        <img src={Cover} alt="coverimg" className="image-cover"/>
                         <Row>
                             <Col xs={2} sm={2} md={2}/>
                             <Col xs={3} sm={3} md={3}>

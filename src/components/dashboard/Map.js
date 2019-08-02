@@ -1,12 +1,29 @@
 /*global google*/
-import React, { Component } from "react";
+import React from "react";
 import { withGoogleMap, GoogleMap, DirectionsRenderer} from "react-google-maps";
+import dataFetch from '../../utils/dataFetch';
+import Cookies from 'universal-cookie';
 
-class Map extends Component {
-    state = {
-        directions: null
-    };
 
+const cookies = new Cookies();
+
+const query = `
+mutation Travels($token: String!){
+  Travels(token:$token){
+    from
+    to
+    users
+  }
+}
+`;
+
+class Map extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            directions: null
+        };
+    }
     
     distance(lat1, lon1, lat2, lon2) {
         if ((lat1 === lat2) && (lon1 === lon2)) {
@@ -27,18 +44,30 @@ class Map extends Component {
             return dist;
         }
     }
+
+    getMarkers = async () => {
+        const token = cookies.get('token');
+        const variables = { token: token  };
+        const response = await dataFetch({ query, variables });
+        if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
+            console.log(response);
+            return response;
+        }
+    };
     
     componentDidMount() {
+        this.getMarkers();
         const directionsService = new google.maps.DirectionsService();
 
         const origin = this.props.from;
         const destination = this.props.to;
 
         directionsService.route({
-                origin: origin,
-                destination: destination,
-                travelMode: google.maps.TravelMode.DRIVING
-            },
+            origin: origin,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+            provideRouteAlternatives: true
+        },
             (result, status) => {
                 if (status === google.maps.DirectionsStatus.OK) {
                     this.setState({

@@ -5,7 +5,7 @@ If you do not want to travel alone, If you are looking for the travel partner, I
 It's simple, click on Hello App, Create an account, Give your travel path and search for the travel mates near you.
 
 ## Want to Contribute?
-We have two different repos hello-front-end: _ & hello-back-end: _
+You can find the backend code [here](https://github.com/gopavasanth/Hello) 
 Also, we have a very supportive technical team, Feel free to join us and ask any questions. 
 
 In the project directory, you can run:

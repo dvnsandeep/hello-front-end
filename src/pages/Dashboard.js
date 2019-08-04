@@ -40,7 +40,9 @@ class Dashboard extends React.Component {
             to,
             from,
             search: true,
+
         });
+        
     }
 
     handleSubmit(){
@@ -75,8 +77,8 @@ class Dashboard extends React.Component {
                           language={'en'}
                           country={'country:in'}
                           coordinates={true}
-                          locationBoxStyle={'custom-style'}
-                          locationListStyle={'custom-style-list'}
+                        //   locationBoxStyle={'custom-style'}
+                        //   locationListStyle={'custom-style-list'}
                           onChange={(e) => { this.setState({ place: e }); this.from = e.place }}
                       />
                   </div>
@@ -86,8 +88,8 @@ class Dashboard extends React.Component {
                           language={'en'}
                           country={'country:in'}
                           coordinates={true}
-                          locationBoxStyle={'custom-style'}
-                          locationListStyle={'custom-style-list'}
+                        //   locationBoxStyle={'custom-style'}
+                        //   locationListStyle={'custom-style-list'}
                           onChange={(e) => { this.setState({ place: e });  this.to = e.place  }}
                       />
                   </div>

@@ -45,6 +45,7 @@ class Map extends React.Component {
         }
     }
 
+
     getMarkers = async () => {
         const token = cookies.get('token');
         const variables = { token: token  };

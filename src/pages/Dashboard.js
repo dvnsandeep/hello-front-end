@@ -5,8 +5,10 @@ import { withScriptjs } from "react-google-maps";
 import dataFetch from '../utils/dataFetch';
 import Cookies from 'universal-cookie';
 import { GoogleComponent } from 'react-google-location';
+import Geocode from "react-geocode"
 
 const API_KEY = 'AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk';
+Geocode.setApiKey("AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk");
 
 const cookies = new Cookies();
 
@@ -27,12 +29,14 @@ class Dashboard extends React.Component {
             from: '',
             to: '',
             search: false,
+            lat: null,
+            lng: null
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-
+ 
     handleSearch(){
         const from = this.from;
         const to = this.to;
@@ -59,6 +63,7 @@ class Dashboard extends React.Component {
     };
 
     render() {
+
       const MapLoader = withScriptjs(Map);
       return (
         <React.Fragment>
@@ -96,6 +101,9 @@ class Dashboard extends React.Component {
                   <div className="col-sm-2 p-2">
                       <button style={{marginLeft: 10}} onClick={this.handleSearch}>Search</button>
                   </div>
+                      {<div className="col-sm-2 p-2">
+                          <button style={{ marginLeft: 10 }} onClick={this.adding_the_markers}>Seaddarch</button>
+                      </div> }
                   <div className="col-sm-2 p-2">
                       {this.state.search ? <button style={{marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
                   </div>

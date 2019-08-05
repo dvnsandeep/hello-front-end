@@ -3,10 +3,15 @@ import React from "react";
 import { withGoogleMap, GoogleMap, DirectionsRenderer} from "react-google-maps";
 import dataFetch from '../../utils/dataFetch';
 import Cookies from 'universal-cookie';
+import { arrayExpression } from "@babel/types";
+import Geocode from "react-geocode"
+
+const API_KEY = 'AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk';
+Geocode.setApiKey("AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk");
 
 
 const cookies = new Cookies();
-
+var rep=''
 const query = `
 mutation Travels($token: String!){
   Travels(token:$token){
@@ -21,10 +26,36 @@ class Map extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            directions: null
+            directions: null,
+            markers: null
         };
     }
     
+    get_latlng(locat) {
+        Geocode.fromAddress(locat).then(
+            response => {
+                const { lat, lng } = response.results[0].geometry.location;
+                return { lat, lng }
+            },
+            error => {
+                console.error(error);
+            }
+        );
+
+    }
+    getMarkers = async () => {
+        const token = cookies.get('token');
+        const variables = { token: token  };
+        const response = await dataFetch({ query, variables });
+        if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
+            response.data.Travels.map((travel) => {
+                console.log(travel.from);
+                this.setState= {
+                    markers:travel,
+                }
+            })
+        }
+    };
     distance(lat1, lon1, lat2, lon2) {
         if ((lat1 === lat2) && (lon1 === lon2)) {
             return 0;
@@ -44,18 +75,41 @@ class Map extends React.Component {
             return dist;
         }
     }
+    get_lat(locat) {
+        Geocode.fromAddress(locat).then(
+            response => {
+                const { lat, lng } = response.results[0].geometry.location;
+                return lat
+            },
+            error => {
+                console.error(error);
+            }
+        );
+
+    }
+    get_lng(locat) {
+        Geocode.fromAddress(locat).then(
+            response => {
+                const { lat, lng } = response.results[0].geometry.location;
+                return lng
+            },
+            error => {
+                console.error(error);
+            }
+        );
+
+    }
 
 
-    getMarkers = async () => {
-        const token = cookies.get('token');
-        const variables = { token: token  };
-        const response = await dataFetch({ query, variables });
-        if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
-            console.log(response);
-            return response;
-        }
-    };
-    
+    adding_the_markers() {
+        console.log(this.state.markers);
+        var dist1,dist2;
+        for (var i = 0; i < this.state.markers.length; i++) {
+
+        dist1 = this.distance(this.get_lat(this.state.from), this.get_lng(this.state.from), this.get_lat(this.state.markers[i].from), this.get_lng(this.state.markers[1].from))
+        console.log(dist1);
+             }
+    }
     componentDidMount() {
         this.getMarkers();
         const directionsService = new google.maps.DirectionsService();
@@ -82,6 +136,9 @@ class Map extends React.Component {
     }
 
     render() {
+        //  const asdf = this.state.markers.map(Travels.map((from) => from));
+        //  console.log(this.state.markers)
+        // console.log(this.state.markers)
         const Map = withGoogleMap(props => (
             <GoogleMap
                 defaultZoom={13}
@@ -101,4 +158,4 @@ class Map extends React.Component {
     }
 }
 
-export default Map;
+export default Map

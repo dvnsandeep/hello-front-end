@@ -13,11 +13,13 @@ Geocode.setApiKey("AIzaSyCaK8qoLfQ8WW7M4XGe60O1_LpVrBE6yyk");
 const cookies = new Cookies();
 
 const query = `
-mutation createTravel($token: String!, $from: String! , $to: String! ) {
-   createTravel(token: $token, from: $from , to: $to) {
+mutation createTravel($token: String!, $from: String! , $to: String!, $fromlatitude: String!, $fromlongitude: String! ) {
+   createTravel(token: $token, from: $from , to: $to , fromlatitude: $fromlatitude, fromlongitude:$fromlongitude) {
     _id
     from
     to
+    fromlatitude
+    fromlongitude
   }
 }
 `;
@@ -39,6 +41,18 @@ class Dashboard extends React.Component {
  
     handleSearch(){
         const from = this.from;
+        Geocode.fromAddress(from).then(
+            response => {
+                const { lat, lng } = response.results[0].geometry.location;
+                this.setState({
+                    fromlatitude: lat,
+                    fromlongitude: lng,
+                })
+            },
+            error => {
+                console.error(error);
+            }
+        );
         const to = this.to;
         this.setState({
             to,
@@ -55,7 +69,7 @@ class Dashboard extends React.Component {
 
     travel = async () => {
         const token = cookies.get('token');
-        const variables = { token: token ,from: this.state.from, to: this.state.to  };
+        const variables = { token: token ,from: this.state.from, to: this.state.to, fromlatitude: this.state.fromlatitude.toString(), fromlongitude: this.state.fromlongitude.toString() };
         const response = await dataFetch({ query, variables });
         if (!Object.prototype.hasOwnProperty.call(response, 'errors')) {
             console.log('worked');
@@ -63,7 +77,6 @@ class Dashboard extends React.Component {
     };
 
     render() {
-
       const MapLoader = withScriptjs(Map);
       return (
         <React.Fragment>
@@ -82,8 +95,6 @@ class Dashboard extends React.Component {
                           language={'en'}
                           country={'country:in'}
                           coordinates={true}
-                        //   locationBoxStyle={'custom-style'}
-                        //   locationListStyle={'custom-style-list'}
                           onChange={(e) => { this.setState({ place: e }); this.from = e.place }}
                       />
                   </div>
@@ -93,17 +104,12 @@ class Dashboard extends React.Component {
                           language={'en'}
                           country={'country:in'}
                           coordinates={true}
-                        //   locationBoxStyle={'custom-style'}
-                        //   locationListStyle={'custom-style-list'}
                           onChange={(e) => { this.setState({ place: e });  this.to = e.place  }}
                       />
                   </div>
                   <div className="col-sm-2 p-2">
                       <button style={{marginLeft: 10}} onClick={this.handleSearch}>Search</button>
                   </div>
-                      {<div className="col-sm-2 p-2">
-                          <button style={{ marginLeft: 10 }} onClick={this.adding_the_markers}>Seaddarch</button>
-                      </div> }
                   <div className="col-sm-2 p-2">
                       {this.state.search ? <button style={{marginLeft: 20}} onClick={this.handleSubmit}>Confirm</button> : null}
                   </div>

@@ -74,12 +74,13 @@ class Map extends React.Component {
                 defaultZoom={13}
             >
                 {props.markers.map((marker) => {
-                    return (
-                        <Marker
-                            key={marker.fromlatitude + marker.longitude}
-                            position={{ lat: parseFloat(marker.fromlatitude), lng: parseFloat(marker.fromlongitude) }}
-                        />
-                    )
+                    if(marker.to === this.props.to)
+                        return (
+                            <Marker
+                                key={marker.fromlatitude + marker.longitude}
+                                position={{ lat: parseFloat(marker.fromlatitude), lng: parseFloat(marker.fromlongitude) }}
+                            />
+                        )
                 })}
                 <DirectionsRenderer directions={this.state.directions}/>
             </GoogleMap>

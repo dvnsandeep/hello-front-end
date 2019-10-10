@@ -1,3 +1,6 @@
+## Hey Hello
+Hello is created by Gopa Vasanth and developed by Harshith pabbati.
+
 ## Why use Hello App?
 If you do not want to travel alone, If you are looking for the travel partner, If you want to save your money, Then this is the app you are looking for :)
 
@@ -14,7 +17,6 @@ In the project directory, you can run:
 npm install
 npm start
 ```
-
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

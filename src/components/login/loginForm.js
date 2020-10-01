@@ -11,12 +11,12 @@ const cookies = new Cookies();
 const query = `
 mutation tokenAuth($email: String!, $password: String!) {
    tokenAuth(email: $email, password: $password) {
-    email
-    token
-    username
-    firstname
-    lastname
-    imageUrl
+    email-user
+    token-user
+    username-user
+    firstname-user
+    lastname-user
+    imageUrl-user
     }
 }`;
 
